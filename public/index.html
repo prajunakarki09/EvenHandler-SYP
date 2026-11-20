@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventHub | Event Planning & Management Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Main Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand-logo" onclick="app.navigate('home')">
+        <span class="logo-icon">🎉</span>
+        <span class="logo-text">Event<span class="highlight">Hub</span></span>
+        <span class="badge syp-badge">SYP 2026</span>
+      </div>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#marketplace" onclick="app.navigate('home')">Browse Events</a>
+        <a href="#calculator" onclick="app.navigate('home')">Budget Calculator</a>
+        <a href="#vendors" onclick="app.navigate('home')">Vendors</a>
+        <a href="#gallery" onclick="app.navigate('home')">Gallery</a>
+        <a href="#how-it-works" onclick="app.navigate('home')">How It Works</a>
+        <a href="#features" onclick="app.navigate('home')">Roles</a>
+        <a href="#contact" onclick="app.navigate('home')">Contact</a>
+      </nav>
+
+      <!-- Auth Action Controls -->
+      <div class="nav-auth" id="nav-auth">
+        <!-- Rendered dynamically by app.js depending on login state -->
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <main id="app-content">
+
+    <!-- ================================================================= -->
+    <!-- VIEW 1: PUBLIC MARKETPLACE & LANDING PAGE                         -->
+    <!-- ================================================================= -->
+    <section id="view-home" class="view-section active">
+      <!-- Hero Banner -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <div class="hero-tag">✨ Complete Event Planning Marketplace</div>
+          <h1 class="hero-title">Your Dream Celebration, <br><span class="gradient-text">Planned Without The Stress</span></h1>
+          <p class="hero-subtitle">
+            One single platform to browse, customize, and book weddings, birthdays, and celebrations.
+            No more chasing dozens of individual vendors for catering, decor, makeup, or music.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-lg" onclick="app.openAuthModal('register')">Get Started Free</button>
+            <a href="#marketplace" class="btn btn-outline btn-lg">Explore Packages</a>
+            <button class="btn btn-demo btn-lg" onclick="app.openDemoLoginModal()">⚡ Demo Quick Login</button>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Events Managed</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Vetted Vendors</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">3 Roles</span>
+              <span class="stat-label">RBAC Security</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">4.9/5</span>
+              <span class="stat-label">Customer Rating</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Event Category Filter & Marketplace -->
+      <section id="marketplace" class="marketplace-section">
+        <div class="section-header">
+          <div class="section-tag">Curated Collections</div>
+          <h2 class="section-title">Popular Event Packages</h2>
+          <p class="section-desc">Choose from ready-to-book bundles or customize activities with our dedicated event organizers.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="category-tabs">
+          <button class="tab-btn active" onclick="app.filterPackages('all', this)">All Celebrations</button>
+          <button class="tab-btn" onclick="app.filterPackages('Wedding', this)">💍 Weddings</button>
+          <button class="tab-btn" onclick="app.filterPackages('Birthday', this)">🎂 Birthdays</button>
+          <button class="tab-btn" onclick="app.filterPackages('Anniversary', this)">🥂 Anniversaries</button>
+        </div>
+
+        <!-- Packages Grid -->
+        <div class="packages-grid" id="packages-grid">
+          <!-- Dynamic Package Cards injected by JS -->
+        </div>
+      </section>
+
+      <!-- How It Works Flow -->
+      <section id="how-it-works" class="how-section">
+        <div class="section-header">
+          <div class="section-tag">Effortless Workflow</div>
+          <h2 class="section-title">How EventHub Coordinates Everything</h2>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-badge">1</div>
+            <div class="step-icon">🔍</div>
+            <h3>1. Browse & Customize</h3>
+            <p>Select your event package, guest count, and date. Submit your bespoke preferences in minutes.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-badge">2</div>
+            <div class="step-icon">📋</div>
+            <h3>2. Organizer Coordinates</h3>
+            <p>Our professional event organizers line up vetted caterers, floral stylists, sound, and makeup teams.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-badge">3</div>
+            <div class="step-icon">🎉</div>
+            <h3>3. Celebrate Hassle-Free</h3>
+            <p>Enjoy your special day with full peace of mind while our staff handles logistics on-site.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Roles & Features Showcase -->
+      <section id="features" class="roles-section">
+        <div class="section-header">
+          <div class="section-tag">Role-Based Access Control</div>
+          <h2 class="section-title">Engineered For Three Dedicated Roles</h2>
+        </div>
+
+        <div class="roles-grid">
+          <div class="role-feature-card">
+            <div class="role-icon">👤</div>
+            <h3>Customer Role</h3>
+            <p>Instant public registration. Browse curated packages, request custom bookings, track logistics progress, and manage reservations.</p>
+            <ul class="feature-bullets">
+              <li>✓ Public signup with password validation</li>
+              <li>✓ Event booking request generator</li>
+              <li>✓ Private customer dashboard</li>
+            </ul>
+          </div>
+
+          <div class="role-feature-card featured-role">
+            <div class="role-badge">Restricted Access</div>
+            <div class="role-icon">📋</div>
+            <h3>Organizer / Staff</h3>
+            <p>Authorized coordination staff. Review customer requests, assign specialized vendors (catering, decor, DJ, makeup), and update timelines.</p>
+            <ul class="feature-bullets">
+              <li>✓ Access restricted to staff accounts</li>
+              <li>✓ Vendor coordination hub</li>
+              <li>✓ Multi-vendor activity assignment</li>
+            </ul>
+          </div>
+
+          <div class="role-feature-card">
+            <div class="role-icon">⚙️</div>
+            <h3>Admin Superuser</h3>
+            <p>Complete administrative oversight. Manage user accounts, provision organizers, toggle access status, and inspect audit logs.</p>
+            <ul class="feature-bullets">
+              <li>✓ Provision staff & organizer accounts</li>
+              <li>✓ User activation/deactivation toggles</li>
+              <li>✓ System-wide metrics and reporting</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- INTERACTIVE EVENT BUDGET ESTIMATOR SECTION                    -->
+      <!-- ============================================================= -->
+      <section id="calculator" class="calculator-section">
+        <div class="section-header">
+          <div class="section-tag">Instant Quote Estimator</div>
+          <h2 class="section-title">Interactive Event Budget Calculator</h2>
+          <p class="section-desc">Customize your guest count and required services. Watch your estimated budget update in real-time.</p>
+        </div>
+
+        <div class="calculator-card">
+          <div class="calc-controls">
+            <div class="calc-group">
+              <div class="calc-label-row">
+                <label for="calc-guests">Guest Count:</label>
+                <span class="calc-counter" id="calc-guests-val">120 Guests</span>
+              </div>
+              <input type="range" id="calc-guests" min="20" max="600" step="10" value="120" oninput="app.updateCalculator()">
+            </div>
+
+            <div class="calc-group">
+              <label>Select Included Services:</label>
+              <div class="calc-checkbox-grid">
+                <label class="calc-check-item">
+                  <input type="checkbox" id="srv-catering" checked onchange="app.updateCalculator()">
+                  <div class="check-box-content">
+                    <span class="check-title">🍽️ Gourmet Catering</span>
+                    <span class="check-price">$22 / guest</span>
+                  </div>
+                </label>
+                <label class="calc-check-item">
+                  <input type="checkbox" id="srv-decor" checked onchange="app.updateCalculator()">
+                  <div class="check-box-content">
+                    <span class="check-title">💐 Floral & Theme Decor</span>
+                    <span class="check-price">+$650 Flat</span>
+                  </div>
+                </label>
+                <label class="calc-check-item">
+                  <input type="checkbox" id="srv-makeup" checked onchange="app.updateCalculator()">
+                  <div class="check-box-content">
+                    <span class="check-title">💄 Bridal / Glam Makeup</span>
+                    <span class="check-price">+$350 Flat</span>
+                  </div>
+                </label>
+                <label class="calc-check-item">
+                  <input type="checkbox" id="srv-sound" checked onchange="app.updateCalculator()">
+                  <div class="check-box-content">
+                    <span class="check-title">🎧 DJ, Sound & Mood Lights</span>
+                    <span class="check-price">+$450 Flat</span>
+                  </div>
+                </label>
+                <label class="calc-check-item">
+                  <input type="checkbox" id="srv-photo" onchange="app.updateCalculator()">
+                  <div class="check-box-content">
+                    <span class="check-title">📸 Cinematic Photo & Video</span>
+                    <span class="check-price">+$700 Flat</span>
+                  </div>
+                </label>
+                <label class="calc-check-item">
+                  <input type="checkbox" id="srv-cake" checked onchange="app.updateCalculator()">
+                  <div class="check-box-content">
+                    <span class="check-title">🎂 Tiered Custom Cake</span>
+                    <span class="check-price">+$180 Flat</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-summary">
+            <h3>Estimated Investment</h3>
+            <div class="calc-price-display">
+              <span class="calc-currency">$</span>
+              <span class="calc-amount" id="calc-total-price">4,270</span>
+            </div>
+            <p class="calc-note">Live breakdown based on guest count and selected services.</p>
+            <ul class="calc-breakdown-list" id="calc-breakdown">
+              <!-- Rendered by app.js -->
+            </ul>
+            <button class="btn btn-primary btn-block btn-lg" onclick="app.bookFromCalculator()">Book This Custom Estimate →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- VETTED VENDORS DIRECTORY                                      -->
+      <!-- ============================================================= -->
+      <section id="vendors" class="vendors-section">
+        <div class="section-header">
+          <div class="section-tag">Quality Assured</div>
+          <h2 class="section-title">Vetted Vendor Network</h2>
+          <p class="section-desc">Our dedicated organizers coordinate with premier top-rated service partners.</p>
+        </div>
+
+        <div class="vendors-grid">
+          <div class="vendor-card">
+            <div class="vendor-badge">Catering</div>
+            <div class="vendor-avatar">🍽️</div>
+            <h3>Saffron & Spice Banquet</h3>
+            <div class="vendor-rating">⭐ 4.9 &bull; 135+ Events</div>
+            <p>Specializing in 3-course multi-cuisine banquets, live counters, and artisanal desserts.</p>
+            <span class="vendor-tag">Capacity: Up to 1,000 Guests</span>
+          </div>
+
+          <div class="vendor-card">
+            <div class="vendor-badge">Decoration</div>
+            <div class="vendor-avatar">💐</div>
+            <h3>Petals & Vines Floral Studio</h3>
+            <div class="vendor-rating">⭐ 4.8 &bull; 95 Events</div>
+            <p>Grand arches, fairy lights, rustic outdoor canopies, and luxury botanical installations.</p>
+            <span class="vendor-tag">Styles: Modern, Boho, Traditional</span>
+          </div>
+
+          <div class="vendor-card">
+            <div class="vendor-badge">Makeup & Beauty</div>
+            <div class="vendor-avatar">💄</div>
+            <h3>Aura Luxe Bridal Studio</h3>
+            <div class="vendor-rating">⭐ 5.0 &bull; 80 Events</div>
+            <p>Certified bridal stylists offering airbrush makeup, couture hair, and groom grooming.</p>
+            <span class="vendor-tag">On-Site Artist Team</span>
+          </div>
+
+          <div class="vendor-card">
+            <div class="vendor-badge">Sound & Lights</div>
+            <div class="vendor-avatar">🎧</div>
+            <h3>Pulse Beats DJ & Audio</h3>
+            <div class="vendor-rating">⭐ 4.9 &bull; 160 Events</div>
+            <p>Concert-grade acoustics, intelligent moving head beams, smoke effects, and party DJs.</p>
+            <span class="vendor-tag">All Genres & Custom Playlists</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- EVENT GALLERY SHOWCASE                                        -->
+      <!-- ============================================================= -->
+      <section id="gallery" class="gallery-section">
+        <div class="section-header">
+          <div class="section-tag">Past Celebrations</div>
+          <h2 class="section-title">Inspiration Gallery</h2>
+          <p class="section-desc">Glimpse into recent celebrations planned and executed via EventHub.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item item-wedding">
+            <div class="gallery-overlay">
+              <span class="gallery-cat">💍 Royal Wedding</span>
+              <h4>The Grand Fairmont Palace</h4>
+              <p>350 Guests &bull; Full Floral Mandap & Live Banquet</p>
+            </div>
+          </div>
+          <div class="gallery-item item-birthday">
+            <div class="gallery-overlay">
+              <span class="gallery-cat">🎂 10th Birthday Gala</span>
+              <h4>Neon Carnival Party</h4>
+              <p>80 Guests &bull; Magic Show & Balloon Wonderland</p>
+            </div>
+          </div>
+          <div class="gallery-item item-anniversary">
+            <div class="gallery-overlay">
+              <span class="gallery-cat">🥂 25th Silver Jubilee</span>
+              <h4>Skyline Rooftop Evening</h4>
+              <p>120 Guests &bull; Candlelight & String Quartet</p>
+            </div>
+          </div>
+          <div class="gallery-item item-gala">
+            <div class="gallery-overlay">
+              <span class="gallery-cat">🏢 Annual Gala</span>
+              <h4>Crystal Ballroom Reception</h4>
+              <p>500 Guests &bull; High-Tech AV & Red Carpet</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- TESTIMONIALS SECTION                                          -->
+      <!-- ============================================================= -->
+      <section id="testimonials" class="testimonials-section">
+        <div class="section-header">
+          <div class="section-tag">Happy Clients</div>
+          <h2 class="section-title">What Our Hosts Say</h2>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">"EventHub was a lifesaver for our wedding. Having our organizer coordinate the caterers, floral decor, and DJ in one place saved us weeks of stressful phone calls!"</p>
+            <div class="test-author">
+              <span class="author-avatar">👰</span>
+              <div>
+                <strong>Elena & David Vance</strong>
+                <small>Fairmont Wedding &bull; Dec 2025</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">"Booked my son's 7th superhero birthday through the site. The cake, balloon arch, and entertainer arrived on time and coordinated seamlessly. Worth every penny!"</p>
+            <div class="test-author">
+              <span class="author-avatar">🎈</span>
+              <div>
+                <strong>Marcus Rodriguez</strong>
+                <small>Birthday Celebration &bull; Jan 2026</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">"As an Event Organizer, having the coordination hub where I can manage vendor assignments and update customer requests directly has quadrupled our efficiency."</p>
+            <div class="test-author">
+              <span class="author-avatar">📋</span>
+              <div>
+                <strong>Sophia Reynolds</strong>
+                <small>Lead Coordinator, EventHub Staff</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- CONTACT & INQUIRY SECTION                                     -->
+      <!-- ============================================================= -->
+      <section id="contact" class="contact-section">
+        <div class="contact-card">
+          <div class="contact-info">
+            <div class="section-tag">Get In Touch</div>
+            <h2>Have Custom Requirements?</h2>
+            <p>Looking for a bespoke venue, celebrity performers, or custom dietary menus? Our lead organizers are standing by.</p>
+            
+            <div class="contact-items">
+              <div class="c-item">
+                <span class="c-icon">📍</span>
+                <span>Campus Tech Park, Second Year Project Lab 4</span>
+              </div>
+              <div class="c-item">
+                <span class="c-icon">📧</span>
+                <span>support@eventhub.com</span>
+              </div>
+              <div class="c-item">
+                <span class="c-icon">📞</span>
+                <span>+1 (800) 555-EVENT</span>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact-form" onsubmit="app.handleContactSubmit(event)">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" id="contact-name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="contact-email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label>Event Type</label>
+              <select id="contact-type">
+                <option>💍 Wedding</option>
+                <option>🎂 Birthday Celebration</option>
+                <option>🥂 Anniversary</option>
+                <option>🏢 Corporate / Gala</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message / Inquiries</label>
+              <textarea id="contact-message" rows="3" placeholder="Tell us how we can help make your event unforgettable..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Send Inquiry</button>
+          </form>
+        </div>
+      </section>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 2: CUSTOMER DASHBOARD                                        -->
+    <!-- ================================================================= -->
+    <section id="view-customer" class="view-section">
+      <div class="dashboard-header">
+        <div>
+          <span class="badge badge-customer">Customer Portal</span>
+          <h2 class="dash-title">Welcome back, <span id="cust-welcome-name">Customer</span>!</h2>
+          <p class="dash-desc">Plan, customize, and manage your upcoming celebrations.</p>
+        </div>
+        <div class="dash-actions">
+          <button class="btn btn-primary" onclick="app.openBookingModal()">+ Book New Event</button>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Cards -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon">🎉</div>
+          <div class="metric-info">
+            <span class="metric-val" id="cust-stat-bookings">1</span>
+            <span class="metric-lbl">Active Event Booking</span>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">⭐</div>
+          <div class="metric-info">
+            <span class="metric-val">3</span>
+            <span class="metric-lbl">Saved Packages</span>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">🛡️</div>
+          <div class="metric-info">
+            <span class="metric-val">RBAC Active</span>
+            <span class="metric-lbl">Customer Session Verified</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Bookings Table -->
+      <div class="content-panel">
+        <div class="panel-header">
+          <h3>My Event Bookings</h3>
+          <span class="panel-subtitle">Real-time status updates from your assigned organizer</span>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table" id="customer-bookings-table">
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Event Type</th>
+                <th>Event Date</th>
+                <th>Guests</th>
+                <th>Budget Tier</th>
+                <th>Organizer Status</th>
+              </tr>
+            </thead>
+            <tbody id="cust-bookings-tbody">
+              <!-- Injected by app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 3: ORGANIZER / STAFF HUB                                     -->
+    <!-- ================================================================= -->
+    <section id="view-organizer" class="view-section">
+      <div class="dashboard-header">
+        <div>
+          <span class="badge badge-organizer">Staff & Coordination Hub</span>
+          <h2 class="dash-title">Organizer Workspace</h2>
+          <p class="dash-desc">Manage customer bookings and coordinate vendor logistics (catering, decor, makeup, entertainment).</p>
+        </div>
+        <div class="dash-actions">
+          <span class="status-indicator live">Live Coordination Active</span>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon">📩</div>
+          <div class="metric-info">
+            <span class="metric-val" id="org-pending-count">2</span>
+            <span class="metric-lbl">Requests Pending Review</span>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">👨‍🍳</div>
+          <div class="metric-info">
+            <span class="metric-val">4 Categories</span>
+            <span class="metric-lbl">Catering, Decor, Makeup, DJ</span>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">✅</div>
+          <div class="metric-info">
+            <span class="metric-val">8</span>
+            <span class="metric-lbl">Completed This Month</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coordination Requests Table -->
+      <div class="content-panel">
+        <div class="panel-header">
+          <h3>Customer Event Requests</h3>
+          <span class="panel-subtitle">Assign dedicated vendors and update execution progress</span>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Request ID</th>
+                <th>Customer Name</th>
+                <th>Event & Date</th>
+                <th>Vendors Needed</th>
+                <th>Assigned Staff</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="org-requests-tbody">
+              <!-- Injected by app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 4: ADMIN CONTROL PANEL                                       -->
+    <!-- ================================================================= -->
+    <section id="view-admin" class="view-section">
+      <div class="dashboard-header">
+        <div>
+          <span class="badge badge-admin">Superuser Control Panel</span>
+          <h2 class="dash-title">System Administration</h2>
+          <p class="dash-desc">Manage system users, provision organizers, inspect session security, and review platform metrics.</p>
+        </div>
+        <div class="dash-actions">
+          <button class="btn btn-primary" onclick="app.openCreateStaffModal()">+ Provision Staff Account</button>
+        </div>
+      </div>
+
+      <!-- Admin Metrics -->
+      <div class="metrics-grid" id="admin-metrics-container">
+        <!-- Rendered by app.js -->
+      </div>
+
+      <!-- User Management Panel -->
+      <div class="content-panel">
+        <div class="panel-header between">
+          <div>
+            <h3>All System Users</h3>
+            <span class="panel-subtitle">Manage account roles and activate or suspend access</span>
+          </div>
+          <div class="search-box">
+            <input type="text" id="admin-user-search" placeholder="Search by name, email or role..." oninput="app.filterAdminUsers()">
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>User ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Assigned Role</th>
+                <th>Status</th>
+                <th>Registered</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="admin-users-tbody">
+              <!-- Rendered by app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================================================================= -->
+  <!-- MODALS CONTAINER                                                  -->
+  <!-- ================================================================= -->
+
+  <!-- AUTH MODAL (Login / Register / Forgot Password) -->
+  <div id="modal-auth" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="app.closeModals()">✕</button>
+
+      <!-- Auth Tabs -->
+      <div class="modal-tabs">
+        <button id="tab-login" class="modal-tab active" onclick="app.switchAuthTab('login')">Sign In</button>
+        <button id="tab-register" class="modal-tab" onclick="app.switchAuthTab('register')">Create Account</button>
+        <button id="tab-forgot" class="modal-tab" onclick="app.switchAuthTab('forgot')">Forgot Password</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="form-login" class="auth-form active" onsubmit="app.handleLogin(event)">
+        <div class="form-group">
+          <label for="login-email">Email Address</label>
+          <input type="email" id="login-email" placeholder="name@example.com" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <div class="label-row">
+            <label for="login-password">Password</label>
+            <a href="#" class="form-link" onclick="app.switchAuthTab('forgot')">Forgot?</a>
+          </div>
+          <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="btn-login-submit">Sign In</button>
+
+        <div class="demo-box">
+          <span class="demo-title">⚡ Quick Fill Demo Credentials:</span>
+          <div class="demo-pills">
+            <button type="button" class="demo-pill admin" onclick="app.fillDemo('admin')">👑 Admin</button>
+            <button type="button" class="demo-pill org" onclick="app.fillDemo('organizer')">📋 Organizer</button>
+            <button type="button" class="demo-pill cust" onclick="app.fillDemo('customer')">👤 Customer</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- REGISTER FORM (Customer Signup) -->
+      <form id="form-register" class="auth-form" onsubmit="app.handleRegister(event)">
+        <div class="form-notice">
+          ℹ️ Public registration creates a <strong>Customer</strong> account. Staff and Organizer accounts are provisioned by System Administrators.
+        </div>
+        <div class="form-group">
+          <label for="reg-name">Full Name</label>
+          <input type="text" id="reg-name" placeholder="John Doe" required minlength="2">
+        </div>
+        <div class="form-group">
+          <label for="reg-email">Email Address</label>
+          <input type="email" id="reg-email" placeholder="john@example.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="reg-phone">Phone Number</label>
+          <input type="tel" id="reg-phone" placeholder="+1-555-0199">
+        </div>
+        <div class="form-group">
+          <label for="reg-password">Password</label>
+          <input type="password" id="reg-password" placeholder="Min 8 chars, 1 Upper, 1 Lower, 1 Num, 1 Symbol" required oninput="app.checkPasswordStrength(this.value)">
+          <div class="pass-strength" id="reg-pass-indicator">
+            <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
+            <span class="strength-text" id="strength-text">Enter password</span>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="btn-reg-submit">Register as Customer</button>
+      </form>
+
+      <!-- FORGOT PASSWORD FORM -->
+      <form id="form-forgot" class="auth-form" onsubmit="app.handleForgotPassword(event)">
+        <div class="form-notice">
+          Enter your registered email address to receive a secure password reset token.
+        </div>
+        <div class="form-group">
+          <label for="forgot-email">Registered Email</label>
+          <input type="email" id="forgot-email" placeholder="name@example.com" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Generate Reset Token</button>
+
+        <!-- Simulated reset token result for SYP local demo -->
+        <div id="forgot-dev-box" class="dev-token-box hidden">
+          <h4>🧪 SYP Demo Reset Token:</h4>
+          <p id="forgot-dev-token" class="code-preview"></p>
+          <button type="button" class="btn btn-sm btn-outline" onclick="app.populateResetModal()">Use Token to Reset Password →</button>
+        </div>
+      </form>
+
+      <!-- RESET PASSWORD FORM -->
+      <form id="form-reset" class="auth-form" onsubmit="app.handleResetPassword(event)">
+        <div class="form-group">
+          <label for="reset-token-input">Reset Token</label>
+          <input type="text" id="reset-token-input" placeholder="Paste 64-char token" required>
+        </div>
+        <div class="form-group">
+          <label for="reset-new-password">New Password</label>
+          <input type="password" id="reset-new-password" placeholder="New strong password" required minlength="8">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Reset Password</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- BOOKING MODAL (For Customers) -->
+  <div id="modal-booking" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="app.closeModals()">✕</button>
+      <div class="modal-header">
+        <h3>🎉 Book an Event Celebration</h3>
+        <p>Submit your event requirements. An Event Organizer will coordinate all vendors.</p>
+      </div>
+      <form onsubmit="app.handleBookingSubmit(event)">
+        <div class="form-group">
+          <label for="book-type">Celebration Type</label>
+          <select id="book-type" required>
+            <option value="Wedding">💍 Royal Wedding</option>
+            <option value="Birthday">🎂 Birthday Celebration</option>
+            <option value="Anniversary">🥂 Anniversary Party</option>
+            <option value="Corporate / Gala">🏢 Corporate Banquet / Gala</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="book-date">Event Date</label>
+            <input type="date" id="book-date" required>
+          </div>
+          <div class="form-group">
+            <label for="book-guests">Estimated Guests</label>
+            <input type="number" id="book-guests" min="10" max="2000" value="100" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="book-budget">Budget Tier</label>
+          <select id="book-budget">
+            <option value="Standard">Standard ($1,000 - $3,000)</option>
+            <option value="Premium">Premium ($3,000 - $8,000)</option>
+            <option value="Luxury Luxury">Luxury ($8,000+)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="book-notes">Special Requests / Preferences</label>
+          <textarea id="book-notes" rows="3" placeholder="Tell us about theme preferences, dietary needs, live music wishes..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Confirm Booking Request</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CREATE STAFF MODAL (Admin Only) -->
+  <div id="modal-create-staff" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="app.closeModals()">✕</button>
+      <div class="modal-header">
+        <h3>👥 Provision New Staff / Organizer</h3>
+        <p>Restricted admin feature: create Staff/Organizer or Admin accounts.</p>
+      </div>
+      <form onsubmit="app.handleCreateStaff(event)">
+        <div class="form-group">
+          <label for="staff-name">Full Name</label>
+          <input type="text" id="staff-name" placeholder="Staff Name" required minlength="2">
+        </div>
+        <div class="form-group">
+          <label for="staff-email">Staff Email</label>
+          <input type="email" id="staff-email" placeholder="staff@eventhub.com" required>
+        </div>
+        <div class="form-group">
+          <label for="staff-phone">Phone Number</label>
+          <input type="tel" id="staff-phone" placeholder="+1-555-0288">
+        </div>
+        <div class="form-group">
+          <label for="staff-role">Assigned Role</label>
+          <select id="staff-role" required>
+            <option value="ORGANIZER">ORGANIZER (Event Coordinator & Vendor Manager)</option>
+            <option value="ADMIN">ADMIN (Super Administrator)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="staff-password">Initial Password</label>
+          <input type="password" id="staff-password" placeholder="Strong password (e.g. Staff@12345)" required minlength="8">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Provision Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- VENDOR ASSIGNMENT MODAL (Organizer Only) -->
+  <div id="modal-assign-vendor" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="app.closeModals()">✕</button>
+      <div class="modal-header">
+        <h3>📋 Coordinate Event Vendors</h3>
+        <p id="assign-modal-req-title">Request: REQ-101</p>
+      </div>
+      <form onsubmit="app.handleAssignVendorSubmit(event)">
+        <input type="hidden" id="assign-req-id">
+        <div class="form-group">
+          <label for="assign-type">Vendor Category</label>
+          <select id="assign-type" required>
+            <option value="Catering">👨‍🍳 Catering & Banquet Menu</option>
+            <option value="Floral Decoration">💐 Floral & Stage Decoration</option>
+            <option value="Bridal Makeup">💄 Bridal Makeup & Styling</option>
+            <option value="DJ & Sound">🎧 DJ, Live Sound & Lighting</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="assign-vendor-name">Partner Vendor Name</label>
+          <input type="text" id="assign-vendor-name" placeholder="e.g. Royal Feast Caterers" required>
+        </div>
+        <div class="form-group">
+          <label for="assign-status">Coordination Status</label>
+          <select id="assign-status">
+            <option value="VENDOR_ASSIGNED">Vendor Assigned</option>
+            <option value="IN_COORDINATION">In Coordination</option>
+            <option value="CONFIRMED">Confirmed & Scheduled</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Update Coordination</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div>
+        <span class="logo-text">🎉 Event<span class="highlight">Hub</span></span>
+        <p class="footer-tagline">Second Year Project (SYP) — Online Event Marketplace with RBAC Architecture.</p>
+      </div>
+      <div class="footer-meta">
+        <span>Stack: Node.js &bull; Express &bull; SQLite &bull; JWT &bull; Bcrypt &bull; RBAC</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
